@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Balances {
+  id                   String   @id @default(cuid())
+  accountIdFrom        String   @map("account_id_from")
+  accountIdTo          String   @map("account_id_to")
+  balanceAccountIdFrom Float    @map("balance_account_id_from")
+  balanceAccountIdTo   Float    @map("balance_account_id_to")
+  createdAt            DateTime @default(now()) @map("created_at")
+  updatedAt            DateTime @updatedAt @map("updated_at")
+
+  @@map("balances")
+}
